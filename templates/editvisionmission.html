@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block "main" %}
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .edit-vision-container {
+        background-color: #0d1b2a;
+        color: white;
+        padding: 40px;
+        border-radius: 10px;
+        max-width: 500px;
+        margin: 30px auto;
+    }
+
+    .edit-vision-container h3 {
+        font-size: 26px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: block;
+        font-size: 16px;
+    }
+
+    .form-control {
+        background-color: #e0e0e0;
+        color: #000;
+        border: none;
+        border-radius: 6px;
+        padding: 12px 14px;
+        width: 100%;
+        font-size: 15px;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border: 2px solid #33d4e6;
+    }
+
+    .btn-submit {
+        background-color: #33d4e6;
+        color: white;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: 0.3s ease;
+        display: block;
+        margin-top: 20px;
+        width: 100%;
+        font-weight: 500;
+    }
+
+    .btn-submit:hover {
+        background-color: #22586d;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        .edit-vision-container {
+            padding: 20px;
+        }
+
+        .edit-vision-container h3 {
+            font-size: 22px;
+        }
+
+        .btn-submit {
+            font-size: 14px;
+            padding: 10px 20px;
+        }
+
+        .form-control {
+            padding: 10px 12px;
+            font-size: 14px;
+        }
+
+        .form-group label {
+            font-size: 15px;
+        }
+    }
+</style>
+
+<div class="edit-vision-container">
+    <h3>Edit Vision and Mission</h3>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_vision_title">Vision Title</label>
+            {{ form.vision_title }}
+        </div>
+        <div class="form-group">
+            <label for="id_vision_description">Vision Description</label>
+            {{ form.vision_description }}
+        </div>
+        <div class="form-group">
+            <label for="id_mission_title">Mission Title</label>
+            {{ form.mission_title }}
+        </div>
+        <div class="form-group">
+            <label for="id_mission_description">Mission Description</label>
+            {{ form.mission_description }}
+        </div>
+        <button type="submit" class="btn-submit">Save Changes</button>
+    </form>
+</div>
+{% endblock "main" %}

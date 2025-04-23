@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block "main" %}
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .dashboard-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: white;
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    h2 {
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+
+    p {
+        font-size: 18px;
+        color: #ccc;
+    }
+
+    .sidebar {
+        background-color: #0d1b2a;
+        box-shadow: 2px 0 8px rgba(0, 102, 255, 0.05);
+        border-radius: 10px;
+        min-height: 100px;
+        padding: 20px;
+        margin-bottom: 20px;
+        margin-right: 10px;
+    }
+
+    .sidebar a {
+        display: block;
+        color: rgb(255, 255, 255);
+        font-weight: 500;
+        margin-bottom: 16px;
+        text-decoration: none;
+        font-size: 16px;
+        transition: all 0.3s ease;
+    }
+
+    .sidebar a:hover {
+        color: rgb(15, 81, 87);
+        text-decoration: underline;
+        transform: translateX(4px);
+    }
+
+    .action-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        margin-top: 20px;
+    }
+
+    .btn-manage {
+        background-color: #1b263b;
+        color: white;
+        padding: 12px 20px;
+        font-size: 16px;
+        border-radius: 8px;
+        text-decoration: none;
+        text-align: center;
+        transition: background-color 0.3s;
+        border: 1px solid #415a77;
+    }
+
+    .btn-manage:hover {
+        background-color:rgb(63, 217, 220);
+    }
+
+    @media (max-width: 768px) {
+        .sidebar {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .action-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .btn-manage {
+            width: 100%;
+        }
+    }
+</style>
+
+<div class="dashboard-container">
+    <h2>Welcome, {{ user.full_name }}</h2>
+    <p>You are logged in as: <strong>{{ user.role }}</strong></p>
+</div>
+
+{% if user.role == 'Admin' %}
+<div class="container">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-4 col-lg-3 sidebar">
+            <a href="{% url 'managehome' %}">Manage Home Page</a>
+            <a href="#">Manage About Us</a>
+            <a href="#">Manage Our Work</a>
+            <a href="#">Manage Features</a>
+            <a href="#">Manage Projects</a>
+            <a href="#">Manage Media</a>
+            <a href="#">Manage Campaign</a>
+            <a href="#">Manage Blog</a>
+        </div>
+
+        <!-- Admin Actions -->
+        <div class="col-md-8 col-lg-5 action-buttons">
+            <a href="{% url 'manageslider' %}" class="btn btn-manage">Manage Image Slider</a>
+            <a href="{% url 'managevisionmission' %}" class="btn btn-manage">Vision & Mission</a>
+            <a href="{% url 'manage_statistics' %}" class="btn btn-manage">Manage Statistic</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock "main" %}

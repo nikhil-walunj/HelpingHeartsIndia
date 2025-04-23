@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block "main" %}
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .dashboard-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: white;
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .dashboard-container h2 {
+        font-size: 32px;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    .dashboard-container p {
+        font-size: 18px;
+        color: #ccc;
+        margin-bottom: 30px;
+    }
+
+    .sidebar {
+        background-color: #0d1b2a;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px;
+        color: white;
+    }
+
+    .sidebar a {
+        display: block;
+        color: white;
+        font-weight: 500;
+        text-decoration: none;
+        font-size: 16px;
+        margin-bottom: 15px;
+        transition: all 0.3s ease;
+    }
+
+    .sidebar a:hover {
+        color: #16caea;
+        text-decoration: underline;
+        transform: translateX(5px);
+    }
+
+    /* Responsive Layout */
+    @media (max-width: 991px) {
+        .sidebar {
+            margin: 15px 10px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .dashboard-container h2 {
+            font-size: 24px;
+        }
+
+        .dashboard-container p {
+            font-size: 16px;
+        }
+
+        .sidebar a {
+            font-size: 15px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .sidebar {
+            text-align: center;
+        }
+
+        .sidebar a {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+    }
+</style>
+
+<div class="dashboard-container">
+    <h2>Welcome, {{ user.full_name }}</h2>
+    <p>You are logged in as: <strong>{{ user.role }}</strong></p>
+</div>
+
+{% if user.role == 'Admin' %}
+<div class="container">
+    <div class="row justify-content-center">
+        <!-- Admin Sidebar -->
+        <div class="col-lg-4 col-md-6 sidebar">
+            <a href="{% url 'managehome' %}">Manage Home Page</a>
+            <a href="#">Manage About Us</a>
+            <a href="#">Manage Our Work</a>
+            <a href="#">Manage Features</a>
+            <a href="#">Manage Projects</a>
+            <a href="#">Manage Media</a>
+            <a href="#">Manage Campaign</a>
+            <a href="#">Manage Blog</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock "main" %}

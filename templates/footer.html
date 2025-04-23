@@ -1,0 +1,111 @@
+{% load static %}
+<!-- Footer Section -->
+<footer class="footer" style="background-color: #0d1b2a; color: #ffffff;">
+    <div class="container py-5">
+        <div class="row">
+            <!-- Logo & About Section -->
+            <div class="col-md-3 col-sm-6 mb-4 text-center text-md-start">
+                {% comment %} <div class="footer-logo mb-3">
+                    <img src="{% static 'Images/HelpingHearttext.png' %}" alt="Helping Hearts India Logo" class="img-fluid small-logo">
+                </div> {% endcomment %}
+                <h5 class="footer-heading">About Us</h5>
+                <p>
+                    We are committed to empowering communities through sustainable development and impactful initiatives.<br>
+                    <strong>"Together for a Better Tomorrow."</strong>
+                </p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-md-3 col-sm-6 mb-4">
+                <h5 class="footer-heading">Quick Links</h5>
+                <ul class="footer-links list-unstyled">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Initiatives</a></li>
+                    <li><a href="#">Donate</a></li>
+                    <li><a href="#">Volunteer</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Us -->
+            <div class="col-md-3 col-sm-6 mb-4">
+                <h5 class="footer-heading">Contact Us</h5>
+                <ul class="footer-contact list-unstyled">
+                    <li><i class="bi bi-whatsapp"></i> +91 98765 43210</li>
+                    <li><i class="bi bi-telephone-fill"></i> +91 12345 67890</li>
+                    <li><i class="bi bi-envelope-fill"></i> support@HelpingHeartsIndia.org</li>
+                    <li><i class="bi bi-clock"></i> Mon-Sat, 10 AM - 6 PM</li>
+                </ul>
+            </div>
+
+            <!-- Follow Us & Location -->
+            <div class="col-md-3 col-sm-6 mb-4">
+                <h5 class="footer-heading">Follow Us</h5>
+                <div class="social-links mb-3">
+                    <a href="#" class="me-2 text-white"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="me-2 text-white"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="me-2 text-white"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="me-2 text-white"><i class="bi bi-linkedin"></i></a>
+                    <a href="#" class="me-2 text-white"><i class="bi bi-youtube"></i></a>
+                </div>
+                <h5 class="footer-heading" style="color: #f4b400;">Our Location</h5>
+                <p>Helping Hearts India NGO Headquarters,<br>MG Road, Pune,<br>Maharashtra 411001</p>
+            </div>
+        </div>
+        <hr class="footer-divider" style="border-color: #ffffff33;">
+        <!-- Bottom Copyright -->
+        <div class="row align-items-center justify-content-between py-3">
+            <!-- Logo Column -->
+            <div class="col-md-auto text-center text-md-start mb-2 mb-md-0">
+                <div class="footer-logo">
+                    <img src="{% static 'Images/HelpingHearttext.png' %}" alt="Helping Hearts India Logo" class="img-fluid small-logo">
+                </div>
+            </div>
+
+            <!-- Copyright Column -->
+            <div class="col text-center text-md-end">
+                <p class="mb-0">© 2025 Helping Hearts India. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+.small-logo {
+    max-width: 260px;
+    height: auto;
+}
+@media (max-width: 767px) {
+    .small-logo {
+        max-width: 120px;
+        margin-bottom: 10px;
+    }
+}
+
+.footer a {
+    color: #f1f1f1;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.footer a:hover {
+    color: #16caea;
+}
+.footer-heading {
+    color: #f4b400;
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.social-links a {
+    font-size: 20px;
+    margin-right: 10px;
+    display: inline-block;
+}
+@media (max-width: 767px) {
+    .footer .col-md-3 {
+        text-align: center;
+    }
+   
+}
+</style>

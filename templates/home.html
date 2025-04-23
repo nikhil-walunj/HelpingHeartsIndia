@@ -1,0 +1,502 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block "main" %}
+
+<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+
+    {% for banner in banners %}
+    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+      <img src="{{ banner.image_url.url }}" height="550px" class="d-block w-100" alt="{{ banner.title }}">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>{{ banner.title }}</h5>
+        <p>{{ banner.description }}</p>
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<style>
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.carousel-caption h5 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.carousel-caption p {
+    font-size: 1.2rem;
+    color: #ddd;
+}
+</style>
+
+<section class="vision-mission">
+  <div class="container">
+    <div class="section-box">
+      <div class="section vision">
+        <h2>Vision</h2>
+        <h3>{{ vision_mission.vision_title }}</h3>
+        <p>{{ vision_mission.vision_description }}</p>
+      </div>
+      <div class="section mission">
+        <h2>Mission</h2>
+        <h3>{{ vision_mission.mission_title }}</h3>
+        <p>{{ vision_mission.mission_description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<style>
+.vision-mission {
+  background-color: #ffffff; /* Matches navbar */
+  color: #fddc99;
+  padding: 60px 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.vision-mission .container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.section-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-around;
+}
+
+.section {
+  flex: 1 1 45%;
+  background-color: #111;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 214, 230, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.section:hover {
+  transform: translateY(-5px);
+}
+
+.section h2 {
+  font-size: 26px;
+  color: #00d6e6; /* Aqua heading */
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.section h3 {
+  color: #fddc99; /* Soft golden title */
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.section p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #ffffff; /* light golden-beige */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .section-box {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .section {
+    flex: 1 1 100%;
+  }
+
+  .section h2 {
+    font-size: 22px;
+  }
+
+  .section h3 {
+    font-size: 18px;
+  }
+}
+
+</style>
+
+<section id="impact" class="statistics-section">
+    <div class="container">
+      <div class="stat-heading">
+        <h2>Our Impact</h2>
+        <p>Here’s how we’re making a difference</p>
+      </div>
+      <div class="stats-grid">
+        {% for stat in statistics %}
+        <div class="stat-card">
+          <i class="{{ stat.icon }}"></i>
+          <h3>{{ stat.value }}</h3>
+          <p class="label">{{ stat.label }}</p>
+          {% if stat.description %}
+          <p class="desc">{{ stat.description }}</p>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+   
+  </section>
+
+<style>
+  .statistics-section {
+    background-color: #000; /* Black background */
+    color: #fff;
+    padding: 60px 20px;
+    text-align: center;
+  }
+  
+  .stat-heading h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #00d3e0;
+  }
+  
+  .stat-heading p {
+    color: #ccc;
+    font-size: 1rem;
+    margin-bottom: 40px;
+  }
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 30px;
+  }
+  
+  .stat-card {
+    background: #111;
+    padding: 30px 20px;
+    border-radius: 12px;
+    transition: 0.3s ease;
+    border: 1px solid #222;
+  }
+  
+  .stat-card:hover {
+    background: #1a1a1a;
+    transform: translateY(-5px);
+  }
+  
+  .stat-card i {
+    font-size: 2.5rem;
+    color: #00d3e0;
+    margin-bottom: 15px;
+  }
+  
+  .stat-card h3 {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  
+  .stat-card .label {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #f0f0f0;
+  }
+  
+  .stat-card .desc {
+    font-size: 0.9rem;
+    color: #aaa;
+  }
+</style>
+  
+
+<section id="initiatives" class="initiatives">
+    <div class="container">
+      <h2 class="section-heading">Our Initiatives</h2>
+      <div class="initiative-grid">
+        {% for item in initiatives %}
+          <div class="initiative-card">
+            <img src="{{ item.image.url }}" alt="{{ item.title }}">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+            {% if item.start_date %}
+              <small><strong>Start Date:</strong> {{ item.start_date|date:"F d, Y" }}</small>
+            {% endif %}
+            {% if item.end_date %}
+              <small><strong>End Date:</strong> {{ item.end_date|date:"F d, Y" }}</small>
+            {% endif %}
+            {% if item.impact %}
+              <small><strong>Impact:</strong> {{ item.impact }}</small>
+            {% endif %}
+            {% if item.location %}
+              <small><strong>Location:</strong> {{ item.location }}</small>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+<style>
+
+
+.initiatives {
+  background-color: #000;
+  color: wheat;
+  padding: 60px 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.section-heading {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #00eaff;
+  font-weight: bold;
+}
+
+.initiative-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+.initiative-card {
+  background-color: #111;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 20px;
+  box-shadow: 5px 5px 5px rgba(14, 172, 178, 0.4);
+  transition: transform 0.3s;
+}
+
+.initiative-card:hover {
+  transform: translateY(-5px);
+}
+
+.initiative-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.initiative-card h3 {
+  color: #00eaff;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.initiative-card p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.initiative-card small {
+  font-size: 0.9rem;
+  color: #ccc;
+  display: block;
+}
+
+</style>
+
+<!-- Volunteer Section -->
+<section id="volunteer">
+  <div class="container2">
+      <h2 class="section-title">Become a Volunteer</h2>
+      <div class="volunteer-grid">
+          <div class="volunteer-card">
+              <h3>Join Our Movement</h3>
+              <p>Help us in organizing events, fundraising, and spreading awareness for our causes. Every hand counts!</p>
+          </div>
+          <div class="volunteer-card">
+              <h3>Make a Difference</h3>
+              <p>Your time and energy can empower communities and support education, health, and environment initiatives.</p>
+          </div>
+      </div>
+  </div>
+</section>
+
+<!-- About Us Section -->
+<section id="about">
+  <div class="container2">
+      <h2 class="section-title">About Us</h2>
+      <div class="about-text">
+          <p>Helping Hearts India is dedicated to building a better society through education, health care, and sustainable community development. Our mission is to empower the underprivileged and inspire collective action for a compassionate world.</p>
+      </div>
+  </div>
+</section>
+
+<!-- Contact Us Section -->
+<section id="contact">
+  <div class="container2">
+      <h2 class="section-title">Contact Us</h2>
+      <form class="contact-form">
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Your Email" required>
+          <textarea rows="5" placeholder="Your Message" required></textarea>
+          <button type="submit">Send Message</button>
+      </form>
+  </div>
+</section>
+
+<!-- Donate Now Section -->
+<section id="donate">
+  <div class="container2">
+      <div class="donate-banner">
+          <h3>Your donation can bring hope and change lives.</h3>
+          <a href="#">Donate Now</a>
+      </div>
+  </div>
+</section>
+
+
+<style>
+section {
+  padding: 60px 20px;
+  background-color: #000;
+  color: #f1f1f1;
+  border-top: 5px solid #ffffff;
+}
+
+h2.section-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: #f4b400;
+}
+
+.container2 {
+  max-width: 1140px;
+  margin: auto;
+}
+
+/* Volunteer Section */
+.volunteer-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.volunteer-card {
+  flex: 1 1 45%;
+  background-color: #1b2a3c;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.volunteer-card h3 {
+  color: #16caea;
+}
+
+/* About Us Section */
+.about-text {
+  text-align: center;
+  max-width: 800px;
+  margin: auto;
+  color: #f1f1f1;
+}
+
+/* Contact Section */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: auto;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  border: 1px solid #16caea;
+  background-color: #0d1b2a;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #ffffff;
+  resize: vertical;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #cccccc;
+}
+
+.contact-form button {
+  background-color: #16caea;
+  color: #0d1b2a;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.contact-form button:hover {
+  background-color: #0f5157;
+  color: #ffffff;
+}
+
+/* Donate Section */
+.donate-banner {
+  background-color: #f4b400;
+  padding: 40px;
+  text-align: center;
+  border-radius: 10px;
+  color: #0d1b2a;
+}
+
+.donate-banner h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.donate-banner a {
+  padding: 12px 24px;
+  background-color: #0d1b2a;
+  color: #f4b400;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.donate-banner a:hover {
+  background-color: #0f5157;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .volunteer-grid {
+    flex-direction: column;
+  }
+
+  .volunteer-card {
+    flex: 1 1 100%;
+  }
+}
+
+</style>
+
+{% endblock "main" %}

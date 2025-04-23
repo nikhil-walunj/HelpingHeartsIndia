@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block "title" %}
+
+{% endblock "title" %}
+
+{% block "main" %}
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .dashboard-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: white;
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    h2 {
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+
+    p {
+        font-size: 18px;
+        color: #ccc;
+    }
+
+</style>
+
+
+<div class="dashboard-container">
+    <h2>Welcome, {{ user.full_name }}</h2>
+    <p>You are logged in as: <strong>{{ user.role }}</strong></p>
+</div>
+
+{% endblock "main" %}

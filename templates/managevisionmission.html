@@ -1,0 +1,305 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block "main" %}
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    font-family: 'Poppins', sans-serif;
+}
+
+.dashboard-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    color: #ccc;
+}
+
+.main-section {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.sidebar {
+    background-color: #0d1b2a;
+    box-shadow: 2px 0 8px rgba(0, 102, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    flex: 1 1 250px;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+.sidebar a {
+    display: block;
+    color: #ffffff;
+    font-weight: 500;
+    margin-bottom: 16px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.sidebar a:hover {
+    color: #00bcd4;
+    text-decoration: underline;
+    transform: translateX(4px);
+}
+
+.form-container {
+    background-color: #0d1b2a;
+    padding: 30px;
+    border-radius: 10px;
+    color: #fff;
+    flex: 1 1 700px;
+    max-width: 100%;
+    margin-left: 50px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form-control,
+textarea,
+input[type="text"] {
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 12px;
+    width: 100%;
+    font-size: 14px;
+}
+
+.btn-submit {
+    background-color:rgb(47, 214, 229);
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color:rgb(24, 83, 105);
+}
+
+.banner-list-container {
+    background-color: #0d1b2a;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #fff;
+    margin-top: 20px;
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    border: 1px solid #333;
+    text-align: left;
+    font-size: 14px;
+}
+
+.table th {
+    background-color: #1a2d45;
+}
+
+.table img {
+    max-width: 100px;
+    max-height: 80px;
+    border-radius: 6px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .main-section {
+        flex-direction: column;
+    }
+
+    .form-container {
+        margin-left: 0;
+    }
+
+    .sidebar {
+        margin-right: 0;
+    }
+}
+
+.btn-action {
+    padding: 6px 14px;
+    margin-right: 8px;
+    border-radius: 6px;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s ease;
+}
+
+.btn-action.edit {
+    background-color:rgb(242, 180, 55);
+    color: #fff;
+}
+
+.btn-action.edit:hover {
+    background-color:rgb(146, 120, 20);
+}
+
+.btn-action.delete {
+    background-color: #f44336;
+    color: #fff;
+}
+
+.btn-action.delete:hover {
+    background-color: #c62828;
+}
+
+@media (max-width: 768px) {
+    .btn-action {
+        margin-bottom: 6px;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+</style>
+
+
+
+<div class="dashboard-container">
+    <h2>Welcome, {{ user.full_name }}</h2>
+    <p>You are logged in as: <strong>{{ user.role }}</strong></p>
+</div>
+
+{% if user.role == 'Admin' %}
+<div class="container">
+
+    <!-- Row 1: Sidebar and Form -->
+    <div class="main-section">
+        <div class="sidebar">
+            <a href="{% url 'managehome' %}">Manage Home Page</a>
+            <a href="#">Manage About Us</a>
+            <a href="#">Manage Our Work</a>
+            <a href="#">Manage Features</a>
+            <a href="#">Manage Projects</a>
+            <a href="#">Manage Media</a>
+            <a href="#">Manage Campaign</a>
+            <a href="#">Manage Blog</a>
+        </div>
+
+        <div class="form-container">
+            <h3>Add Vision & Mission</h3>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_vision_title">Vision Title</label>
+                    {{ form.vision_title }}
+                </div>
+                <div class="form-group">
+                    <label for="id_vision_description">Vision Description</label>
+                    {{ form.vision_description }}
+                </div>
+                <div class="form-group">
+                    <label for="id_mission_title">Mission Title</label>
+                    {{ form.mission_title }}
+                </div>
+                <div class="form-group">
+                    <label for="id_mission_description">Mission Description</label>
+                    {{ form.mission_description }}
+                </div>
+                <button type="submit" class="btn-submit">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Row 2: Vision & Mission List -->
+    <div class="banner-list-container">
+        <h3>All Vision & Mission Entries</h3>
+        {% if vision_mission %}
+            <div class="table-responsive">
+                <table class="table table-dark table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Sr.No</th>
+                            <th>Vision Title</th>
+                            <th>Vision Description</th>
+                            <th>Mission Title</th>
+                            <th>Mission Description</th>
+                            <th>Last Updated</th>
+                            <th>Action - Edit</th>
+                            <th>Action - Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in vision_mission %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ item.vision_title }}</td>
+                            <td>{{ item.vision_description|truncatechars:500 }}</td>
+                            <td>{{ item.mission_title }}</td>
+                            <td>{{ item.mission_description|truncatechars:500 }}</td>
+                            <td>{{ item.last_updated|date:"Y-m-d H:i" }}</td>
+                            <td>
+                                <a href="{% url 'edit_vision_mission' item.id %}" class="btn-action edit mb-2">Edit</a>
+                            </td>
+                            <td>
+                                <a href="{% url 'delete_vision_mission' item.id %}" class="btn-action delete" onclick="return confirm('Are you sure you want to delete this entry?');">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p>No Vision & Mission records found.</p>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
+
+{% endblock "main" %}
+
+
